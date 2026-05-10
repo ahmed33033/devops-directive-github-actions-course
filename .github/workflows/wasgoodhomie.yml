@@ -7,8 +7,12 @@ jobs:
     steps:
       - name: say wasgood
         run: |
-          with open("GITHUB_OUTPUT", "a") as f:
-              print("joe=mama", file=f)
+          from os import environ
+          git_output = environ.get("GITHUB_OUTPUT", None)
+          if git_output is None:
+              raise OSError("env not found")
+          with open(git_output, "a") as f:
+                  print("joe=mama", file=f)
         shell: python
   second_job:
     runs-on: ubuntu-latest
