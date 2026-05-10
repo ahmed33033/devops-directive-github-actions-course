@@ -1,0 +1,16 @@
+name: my awesome workflow
+on:
+  workflow_dispatch:
+jobs:
+  first_job_yo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: say wasgood
+        run: echo hi
+  second_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: we done
+        run: |
+          echo we done out here
+          echo yea we done
