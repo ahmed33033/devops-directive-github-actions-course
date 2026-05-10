@@ -6,12 +6,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: say wasgood
-        run: echo hi
+        run: |
+          print("joe:mama", file="GITHUB_OUTPUT")
+        shell: python
   second_job:
     runs-on: ubuntu-latest
     steps:
       - name: we done
         run: |
           echo we done out here
-          echo yea we done
+          echo yea we done: ${{needs.first_job_yo.outputs.joe}}
     needs: first_job_yo
