@@ -7,7 +7,8 @@ jobs:
     steps:
       - name: say wasgood
         run: |
-          print("joe=mama", file=GITHUB_OUTPUT)
+          with open("GITHUB_OUTPUT", "w+") as f:
+              print("joe=mama", file=f)
         shell: python
   second_job:
     runs-on: ubuntu-latest
