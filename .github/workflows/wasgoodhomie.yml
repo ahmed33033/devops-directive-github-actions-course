@@ -7,12 +7,8 @@ jobs:
     steps:
       - name: say wasgood
         run: |
-          from os import environ
-          git_output = environ.get("GITHUB_OUTPUT", None)
-          if git_output is None:
-              raise OSError("env not found")
-          with open(git_output, "a") as f:
-            f.write("joe=mama\n")
+          joe=mama
+          echo "joe=$joe" >> $GITHUB_OUTPUT
         shell: python
   second_job:
     runs-on: ubuntu-latest
