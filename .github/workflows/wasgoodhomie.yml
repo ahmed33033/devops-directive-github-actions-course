@@ -12,7 +12,7 @@ jobs:
           if git_output is None:
               raise OSError("env not found")
           with open(git_output, "a") as f:
-                  print("joe=mama", file=f)
+            f.write("joe=mama\n")
         shell: python
   second_job:
     runs-on: ubuntu-latest
