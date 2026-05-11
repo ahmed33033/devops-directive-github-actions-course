@@ -4,12 +4,17 @@ on:
 jobs:
   first_job_yo:
     runs-on: ubuntu-latest
+
+    outputs:
+      joe: ${{steps.nono.outputs.joe}}
+
     steps:
       - name: say wasgood
+        id: nono
         run: |
           joe=mama
-          echo "joe=$joe" >> $GITHUB_OUTPUT
-        shell: python
+          echo "joe=${joe}" >> "$GITHUB_OUTPUT"
+        shell: bash
   second_job:
     runs-on: ubuntu-latest
     steps:
