@@ -1,25 +1,22 @@
-name: my awesome workflow
-on:
-  workflow_dispatch:
+name: dependent workflow
+on: workflow_dispatch
+
 jobs:
-  first_job_yo:
-    runs-on: ubuntu-latest
-
-    outputs:
-      joe: ${{steps.nono.outputs.joe}}
-
-    steps:
-      - name: say wasgood
-        id: nono
-        run: |
-          joe=mama
-          echo "joe=${joe}" >> "$GITHUB_OUTPUT"
-        shell: bash
-  second_job:
+  job1:
     runs-on: ubuntu-latest
     steps:
-      - name: we done
-        run: |
-          echo we done out here
-          echo yea we done: ${{needs.first_job_yo.outputs.joe}}
-    needs: first_job_yo
+      - name: step1
+        run: echo step1 was good
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: step1 from job2
+        run: echo deux
+  job3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dependent step from dependent job
+        run: echo was goooooood dependent
+    needs:
+      - job1
+      - job2
