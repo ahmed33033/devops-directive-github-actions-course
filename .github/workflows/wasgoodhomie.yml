@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo wasgood $step_env
-          echo wasgreat $job_env
-          echo wasexcellent $work_env
+          echo "wasgood $step_env"
+          echo "wasgreat $job_env"
+          echo "wasexcellent $work_env"
         env:
           step_env: odijf
         name: rainbow seige go go go
