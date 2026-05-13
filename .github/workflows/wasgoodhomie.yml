@@ -15,7 +15,7 @@ jobs:
           echo "wasgood $step_env"
           echo "wasgreat $job_env"
           echo "wasexcellent $work_env"
-          echo "added_var:added" > ${{github.env}}
+          echo "added_var=added" > "${{github.env}}"
         env:
           step_env: odijf
         name: rainbow seige go go go
