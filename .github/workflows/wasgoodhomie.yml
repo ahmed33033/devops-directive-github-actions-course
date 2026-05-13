@@ -1,22 +1,20 @@
-name: dependent workflow
+name: environmental workflow
+
 on: workflow_dispatch
+
+env:
+  work_env: rainbow
 
 jobs:
   job1:
+    env:
+      job_env: toombon
     runs-on: ubuntu-latest
     steps:
-      - name: step1
-        run: echo step1 was good
-  job2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: step1 from job2
-        run: echo deux
-  job3:
-    runs-on: ubuntu-latest
-    steps:
-      - name: dependent step from dependent job
-        run: echo was goooooood dependent
-    needs:
-      - job1
-      - job2
+      - run: |
+          echo wasgood $step_env
+          echo wasgreat $job_env
+          echo wasexcellent $work_env
+        env:
+          step_env: odijf
+        name: rainbow seige go go go
