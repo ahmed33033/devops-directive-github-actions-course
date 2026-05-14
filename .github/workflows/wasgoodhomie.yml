@@ -1,27 +1,23 @@
-name: secrets and vars
+name: uploading and downloading artifacts
 on: workflow_dispatch
 
 jobs:
   job1:
-    environment: staging
-    name: staging environment
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo " staging secret: ${{secrets.STAGING_SECRET}}"
-          echo "staging var: ${{vars.STAGING_VAR}}"
+      - name: create artifact les go
+        run: echo "was good my fama lam" > texter.txt
+      - name: uplaoding an artifact yesir
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          path: ./tester.txt
   job2:
-    environment: production
-    name: production environment
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "prod secret: ${{secrets.PROD_SECRET}}"
-          echo "prod var: ${{vars.PROD_VAR}}"
-  job3:
-    name: default env
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "repo secret: ${{secrets.REPO_SECRET}}"
-          echo "repo var: ${{vars.REPO_VAR}}"
+      - name: download the artifact kaboom
+        uses: actions/download-artifact@v8
+        with:
+          name: tester.txt
+      - name: echo the artifact
+        run: cat tester.txt
+    needs: job1
