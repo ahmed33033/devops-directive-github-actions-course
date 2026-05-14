@@ -11,13 +11,14 @@ jobs:
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           path: ./tester.txt
+          name: tester
   job2:
     runs-on: ubuntu-latest
     steps:
       - name: download the artifact kaboom
         uses: actions/download-artifact@v8
         with:
-          name: tester.txt
+          name: tester
       - name: echo the artifact
         run: cat tester.txt
     needs: job1
