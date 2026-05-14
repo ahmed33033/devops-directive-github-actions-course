@@ -1,22 +1,27 @@
-name: environmental workflow
-
+name: secrets and vars
 on: workflow_dispatch
-
-env:
-  work_env: rainbow
 
 jobs:
   job1:
-    env:
-      job_env: toombon
+    environment: staging
+    name: staging environment
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "wasgood $step_env"
-          echo "wasgreat $job_env"
-          echo "wasexcellent $work_env"
-          echo "added_var=added" > "${{github.env}}"
-        env:
-          step_env: odijf
-        name: rainbow seige go go go
-      - run: echo "wasgood $added_var"
+          echo " staging secret: ${{secrets.STAGING_SECRET}}"
+          echo "staging var: ${{vars.STAGING_VAR}}"
+  job2:
+    environment: production
+    name: production environment
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "prod secret: ${{secrets.PROD_SECRET}}"
+          echo "prod var: ${{vars.PROD_VAR}}"
+  job3:
+    name: default env
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "repo secret: ${{secrets.REPO_SECRET}}""
+          echo "repo var: ${{vars.REPO_VAR}}"
