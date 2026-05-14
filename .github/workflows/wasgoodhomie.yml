@@ -14,9 +14,9 @@ jobs:
         id: cache_step
         with:
           path: cached_text.txt
-          key: ${{github.event.sender}}-${{hashFiles('cached**')}}
+          key: ${{github.event.sender}}--${{hashFiles('cached**')}}
       - name: use cache les go
-        if: steps.cache_step.outputs.cache-hit == 'false'
+        if: steps.cache_step.outputs.cache-hit != 'true'
         run: |
           echo  "was good fam\nwe want this cached yo\nbye boy" > cached_text.txt
       - name: cat it out
