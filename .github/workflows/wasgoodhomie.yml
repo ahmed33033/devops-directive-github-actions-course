@@ -1,24 +1,23 @@
-name: uploading and downloading artifacts
+name: caching workflow
 on: workflow_dispatch
 
 jobs:
   job1:
+    name: job1 waws good fam
     runs-on: ubuntu-latest
     steps:
-      - name: create artifact les go
-        run: echo "was good my fama lam" > tester.txt
-      - name: uplaoding an artifact yesir
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+      - uses: actions/checkout@v6
         with:
-          path: ./tester.txt
-          name: tester
-  job2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: download the artifact kaboom
-        uses: actions/download-artifact@v8
+          ref: tester
+      - name: cache it les go
+        uses: actions/cache@main
+        id: cache_step
         with:
-          name: tester
-      - name: echo the artifact
-        run: cat tester.txt
-    needs: job1
+          path: cached_text.txt
+          key: ${{github.event.sender}}-${{hashFiles('cached**')}}
+      - name: use cache les go
+        if: steps.cache_step.outputs.cache-hit == 'false'
+        run: |
+          echo  "was good fam\nwe want this cached yo\nbye boy" > cached_text.txt
+      - name: cat it out
+        run: cat cached_text.txt
