@@ -23,5 +23,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "repo secret: ${{secrets.REPO_SECRET}}""
+          echo "repo secret: ${{secrets.REPO_SECRET}}"
           echo "repo var: ${{vars.REPO_VAR}}"
