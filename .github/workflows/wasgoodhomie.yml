@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: create artifact les go
-        run: echo "was good my fama lam" > texter.txt
+        run: echo "was good my fama lam" > tester.txt
       - name: uplaoding an artifact yesir
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
