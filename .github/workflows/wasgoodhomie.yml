@@ -9,12 +9,13 @@ jobs:
       - uses: actions/checkout@v6
         with:
           ref: tester
+
       - name: cache it les go
         uses: actions/cache@main
         id: cache_step
         with:
           path: cached_text.txt
-          key: ${{github.event.sender}}x-${{hashFiles('cached**')}}
+          key: ${{github.event.sender}}4-${{hashFiles('cached**')}}
       # - name: use cache les go
       #   if: steps.cache_step.outputs.cache-hit != 'true'
       #   run: |
