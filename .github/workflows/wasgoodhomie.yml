@@ -1,24 +1,16 @@
-name: caching workflow
+name: permissions yo
 on: workflow_dispatch
+permissions:
+  pull-requests: read
 
 jobs:
-  job1:
-    name: job1 waws good fam
+  first_job:
+    env:
+      GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     runs-on: ubuntu-latest
+    name: dis first job yo first job
     steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: tester
-
-      - name: cache it les go
-        uses: actions/cache@main
-        id: cache_step
-        with:
-          path: cached_text.txt
-          key: ${{github.event.sender}}4-${{hashFiles('cached**')}}
-      # - name: use cache les go
-      #   if: steps.cache_step.outputs.cache-hit != 'true'
-      #   run: |
-      #     echo  "was good fam\nwe want this cached yo\nbye boy" > cached_text.txt
-      - name: cat it out
-        run: cat cached_text.txt
+      - name: first_step
+        uses: actions/checkout@main
+      - name: read some prs
+        run: gh pr list
