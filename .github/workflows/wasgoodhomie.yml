@@ -1,25 +1,16 @@
-name: my awesome workflow
-on:
-  workflow_dispatch:
+name: permissions yo
+on: workflow_dispatch
+permissions:
+  pull-requests: write
+
 jobs:
-  first_job_yo:
+  first_job:
+    env:
+      GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     runs-on: ubuntu-latest
-
-    outputs:
-      joe: ${{steps.nono.outputs.joe}}
-
+    name: dis first job yo first job
     steps:
-      - name: say wasgood
-        id: nono
-        run: |
-          joe=mama
-          echo "joe=${joe}" >> "$GITHUB_OUTPUT"
-        shell: bash
-  second_job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: we done
-        run: |
-          echo we done out here
-          echo yea we done: ${{needs.first_job_yo.outputs.joe}}
-    needs: first_job_yo
+      - name: first_step
+        uses: actions/checkout@main
+      - name: read some prs
+        run: gh pr comment 1 --body "wasgood gnag"
