@@ -13,4 +13,4 @@ jobs:
       - name: first_step
         uses: actions/checkout@main
       - name: read some prs
-        run: gh pr list
+        run: gh pr comment 1 --body "wasgood gnag"
