@@ -1,7 +1,7 @@
 name: permissions yo
 on: workflow_dispatch
 permissions:
-  pull-requests: read
+  pull-requests: write
 
 jobs:
   first_job:
