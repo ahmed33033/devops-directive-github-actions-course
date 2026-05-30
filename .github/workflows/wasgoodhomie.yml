@@ -2,6 +2,10 @@ name: matrix_workflow
 on: 
   workflow_dispatch
 
+concurrency:
+  cancel-in-progress: true
+  group: ${{github.workflow}}-${{github.ref}}
+
 jobs:
   escape_the_matrix:
     runs-on: ubuntu-latest
@@ -13,3 +17,7 @@ jobs:
       - name: first step yo
         run: |
           echo "a: ${{matrix.a}}, b: ${{matrix.b}}"
+      - name: check for specific combo
+        if: ${{matrix.a == 1 && matrix.b == 'b'}}
+        run: echo "sha SHINK"
+      
