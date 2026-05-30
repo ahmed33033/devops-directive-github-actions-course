@@ -1,16 +1,15 @@
-name: permissions yo
-on: workflow_dispatch
-permissions:
-  pull-requests: write
+name: matrix_workflow
+on: 
+  workflow_dispatch
 
 jobs:
-  first_job:
-    env:
-      GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  escape_the_matrix:
     runs-on: ubuntu-latest
-    name: dis first job yo first job
+    strategy:
+      matrix:
+        a: [1,2,3]
+        b: ['a', 'b', 'c']
     steps:
-      - name: first_step
-        uses: actions/checkout@main
-      - name: read some prs
-        run: gh pr comment 1 --body "wasgood gnag"
+      - name: first step yo
+        run: |
+          echo "a: ${{matrix.a}}, b: ${{matrix.b}}"
