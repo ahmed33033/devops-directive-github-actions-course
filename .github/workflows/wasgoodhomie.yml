@@ -10,8 +10,8 @@ jobs:
   escape_the_matrix:
     runs-on: ubuntu-latest
     outputs:
-      a: ${{steps.just-doit.outputs.a}}
-      b: ${{steps.just-doit.outputs.b}}
+      a: ${{toJson(steps.just-doit.outputs.a)}}
+      b: ${{toJson(steps.just-doit.outputs.b)}}
     steps:
       - name: first step yo
         id: just-doit
@@ -24,8 +24,8 @@ jobs:
     needs: escape_the_matrix
     strategy:
       matrix:
-        a: ${{needs.escape_the_matrix.outputs.a}}
-        b: ${{needs.escape_the_matrix.outputs.b}}
+        a: ${{fromJson(needs.escape_the_matrix.outputs.a)}}
+        b: ${{fromJson(needs.escape_the_matrix.outputs.b)}}
     steps:
       - name: boom
         run: echo "a is ${{matrix.a}}" while b is ${{matrix.b}}"
