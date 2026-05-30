@@ -28,5 +28,5 @@ jobs:
         b: ${{fromJson(needs.escape_the_matrix.outputs.b)}}
     steps:
       - name: boom
-        run: echo "a is ${{matrix.a}}" while b is ${{matrix.b}}"
+        run: echo "a is ${{matrix.a}} while b is ${{matrix.b}}"
     
