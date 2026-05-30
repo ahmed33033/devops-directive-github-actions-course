@@ -1,4 +1,4 @@
-name: my awesome workflow
+name: changed_name
 on:
   workflow_dispatch:
 jobs:
