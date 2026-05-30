@@ -10,14 +10,14 @@ jobs:
   escape_the_matrix:
     runs-on: ubuntu-latest
     outputs:
-      a: ${{toJson(steps.just-doit.outputs.a)}}
-      b: ${{toJson(steps.just-doit.outputs.b)}}
+      a: ${{steps.just-doit.outputs.a}}
+      b: ${{steps.just-doit.outputs.b}}
     steps:
       - name: first step yo
         id: just-doit
         run: |
           echo "a=[1,2,3]" >> "$GITHUB_OUTPUT"
-          echo "b=['a','b','c']" >> "$GITHUB_OUTPUT"
+          echo "b=[\"a\",\"b\",\"c\"]" >> "$GITHUB_OUTPUT"
   
   get_the_matrix:
     runs-on: ubuntu-latest
