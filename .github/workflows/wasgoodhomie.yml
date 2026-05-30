@@ -9,15 +9,24 @@ concurrency:
 jobs:
   escape_the_matrix:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        a: [1,2,3]
-        b: ['a', 'b', 'c']
+    outputs:
+      a: ${{steps.just-doit.outputs.a}}
+      b: ${{steps.just-doit.outputs.b}}
     steps:
       - name: first step yo
+        id: just-doit
         run: |
-          echo "a: ${{matrix.a}}, b: ${{matrix.b}}"
-      - name: check for specific combo
-        if: ${{matrix.a == 1 && matrix.b == 'b'}}
-        run: echo "sha SHINK"
-      
+          echo "a=[1,2,3]" >> "$GITHUB_OUTPUT"
+          echo "b=['a','b','c']" >> "$GITHUB_OUTPUT"
+  
+  get_the_matrix:
+    runs-on: ubuntu-latest
+    needs: escape_the_matrix
+    strategy:
+      matrix:
+        a: ${{needs.escape_the_matrix.outputs.a}}
+        b: ${{needs.escape_the_matrix.outputs.b}}
+    steps:
+      - name: boom
+        run: echo "a is ${{matrix.a}}" while b is ${{matrix.b}}"
+    
