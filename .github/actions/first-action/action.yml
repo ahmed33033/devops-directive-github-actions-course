@@ -18,5 +18,5 @@ runs:
   steps:
     - name: only steps
       id: name_creator
-      run: echo "name=\"${{inputs.first_name}} ${{inputs.last_name}}\"" >> "$GITHUB_OUTPUT"
+      run: echo "name=\${{inputs.first_name}} ${{inputs.last_name}}\" >> "$GITHUB_OUTPUT"
       shell: bash
