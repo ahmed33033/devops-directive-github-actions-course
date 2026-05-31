@@ -11,11 +11,11 @@ jobs:
       - uses: actions/checkout@main
         name: get in the repo 
       - name: here's a notice foo
-        run: echo "::notice file=.github/workflows/04-advanced-features--08-workflow-commands.yaml, line=15, endline=27, title=logging_annotations::whats good famalam"
+        run: echo "::notice file=.github/workflows/04-advanced-features--08-workflow-commands.yaml, line=15, endLine=27, title=logging_annotations::whats good famalam"
       - name: watch yourself, here's a warning
-        run: echo "::warning file=.github/workflows/04-advanced-features--08-workflow-commands.yaml, line=15, endline=27, title=logging_annotations::same deal but a warning"
+        run: echo "::warning file=.github/workflows/04-advanced-features--08-workflow-commands.yaml, line=15, endLine=27, title=logging_annotations::same deal but a warning"
       - name: here's an error this time
-        run: echo "::error file=.github/workflows/04-advanced-features--08-workflow-commands.yaml, line=15, endline=27, title=logging_annotations::error message boom"
+        run: echo "::error file=.github/workflows/04-advanced-features--08-workflow-commands.yaml, line=15, endLine=27, title=logging_annotations::error message boom"
       - name: group og logs
         run: |
           echo "::group::her's a group yoo"
