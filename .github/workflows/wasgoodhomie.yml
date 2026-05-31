@@ -1,29 +1,16 @@
-name: workflow commands lesssss go
+name: full name getter
 on: workflow_dispatch
 
 jobs:
-  commands_les_go:
-    runs-on: ubuntu-latest
-    name: dis first job yo, all commands les go
+  first_job:
+    runs-on: ubuntu_latest
     steps:
-      - name: echo some debug boom
-        run: echo "::debug::hello from debug"
       - uses: actions/checkout@main
-        name: get in the repo 
-      - name: here's a notice foo
-        run: echo "::notice file=.github/workflows/04-advanced-features--08-workflow-commands.yaml, line=15, endLine=27, title=logging_annotations::whats good famalam"
-      - name: watch yourself, here's a warning
-        run: echo "::warning file=.github/workflows/04-advanced-features--08-workflow-commands.yaml, line=15, endLine=27, title=logging_annotations::same deal but a warning"
-      - name: here's an error this time
-        run: echo "::error file=.github/workflows/04-advanced-features--08-workflow-commands.yaml, line=15, endLine=27, title=logging_annotations::error message boom"
-      - name: group og logs
-        run: |
-          echo "::group::her's a group yoo"
-          echo "booom in the group"
-          echo "we cooking"
-          echo "::endgroup::"
-      - name: lets get a job summary going
-        run: |
-          echo "summary woohoo :rocket:" >> "$GITHUB_STEP_SUMMARY"
-          echo "## multiple lines YEA" >> "$GITHUB_STEP_SUMMARY"
-          echo "- keep'em cooking" >> "$GITHUB_STEP_SUMMARY"
+      - name: name_printer
+        id: name_printer
+        uses: ./.github/actions/first-action
+        with:
+          first_name: ahmed
+          last_name: mohamed
+      - name: print output
+        run: echo "::debug::${{steps.name_printer.outputs.full_name}}"
