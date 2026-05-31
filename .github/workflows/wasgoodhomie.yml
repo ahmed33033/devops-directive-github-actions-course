@@ -13,4 +13,4 @@ jobs:
           first_name: ahmed
           last_name: mohamed
       - name: print output
-        run: echo "heyyy its.${{steps.name_printer.outputs.full_name}}"
+        run: echo "::debug::heyyy its.${{steps.name_printer.outputs.full_name}}"
