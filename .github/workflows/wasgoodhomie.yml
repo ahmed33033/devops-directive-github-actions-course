@@ -1,25 +1,13 @@
-name: changed_name
-on:
-  workflow_dispatch:
+name: callr resuable workflwo
+on: workflow_dispatch
+
 jobs:
-  first_job_yo:
+  job1:
+    uses: ./.github/workflows/reusable.yaml
+    with:
+      month: 2
+  job2:
     runs-on: ubuntu-latest
-
-    outputs:
-      joe: ${{steps.nono.outputs.joe}}
-
+    needs: job1
     steps:
-      - name: say wasgood
-        id: nono
-        run: |
-          joe=mama
-          echo "joe=${joe}" >> "$GITHUB_OUTPUT"
-        shell: bash
-  second_job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: we done
-        run: |
-          echo we done out here
-          echo yea we done: ${{needs.first_job_yo.outputs.joe}}
-    needs: first_job_yo
+      - run: echo "output -- ${{needs.job1.outputs.days}}"

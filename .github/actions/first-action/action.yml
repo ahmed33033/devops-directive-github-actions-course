@@ -1,0 +1,22 @@
+name: Name Printer
+description: Prints your first and last names, yea!
+inputs:
+  first_name:
+    required: true
+    description: your first name bro
+  last_name:
+    required: true
+    description: your last name yo your
+
+outputs:
+  full_name:
+    description: returns the full name
+    value: ${{steps.name_creator.outputs.name}}
+
+runs:
+  using: "composite"
+  steps:
+    - name: only steps
+      id: name_creator
+      run: echo "name=${{inputs.first_name}}${{inputs.last_name}}" >> "$GITHUB_OUTPUT"
+      shell: bash
