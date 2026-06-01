@@ -1,16 +1,13 @@
-name: full name getter
+name: callr resuable workflwo
 on: workflow_dispatch
 
 jobs:
-  first_job:
+  job1:
+    uses: ./.github/workflows/reusable.yaml
+    with:
+      month: 2
+  job2:
     runs-on: ubuntu-latest
+    needs: job1
     steps:
-      - uses: actions/checkout@main
-      - name: name_printer
-        id: name_printer
-        uses: ./.github/actions/first-action
-        with:
-          first_name: ahmed
-          last_name: mohamed
-      - name: print output
-        run: echo "::debug::heyyy its.${{steps.name_printer.outputs.full_name}}"
+      - run: echo "output -- ${{needs.job1.outputs.days}}"
