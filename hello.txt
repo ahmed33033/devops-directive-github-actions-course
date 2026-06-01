@@ -1,0 +1,6 @@
+$gh workflow run 03-core-features--02-step-types.yaml
+✓ Created workflow_dispatch event for 03-core-features--02-step-types.yaml at main
+https://github.com/ahmed33033/devops-directive-github-actions-course/actions/runs/25757507444
+
+To see the created workflow run, try: gh run view 25757507444
+To see runs for this workflow, try: gh run list --workflow="03-core-features--02-step-types.yaml"

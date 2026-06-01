@@ -1,0 +1,31 @@
+name: reusable workflow
+on:
+    workflow_call:
+        inputs:
+            month:
+                required: true
+                description: the month
+                type: number
+        outputs:
+            num_days:
+                description: the number of days in that month
+                value: ${{jobs.job1.outputs.days}}
+
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        name: days-calculator
+        outputs:
+            days: ${{steps.days_calculator.outputs.days}}
+        steps:
+            - name: "auto 31"
+              run: echo "days=31" >> "$GITHUB_ENV"
+            - name: "if feb"
+              if: ${{inputs.month == 2}}
+              run: echo "days=28" >> "$GITHUB_ENV"
+            - name: "if 30"
+              if: ${{inputs.month == 4 || inputs.month == 6 || inputs.month == 9 || inputs.month == 11}}
+              run: echo "days=30" >> "$GITHUB_ENV"
+            - name: calculate the days yo
+              id: days_calculator
+              run: echo "days=${{env.days}}" >> "$GITHUB_OUTPUT"
