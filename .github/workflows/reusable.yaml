@@ -7,7 +7,7 @@ on:
                 description: the month
                 type: number
         outputs:
-            num_days:
+            days:
                 description: the number of days in that month
                 value: ${{jobs.job1.outputs.days}}
 
