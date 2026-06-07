@@ -3,9 +3,11 @@
 {
 	"name": "Node.js & TypeScript",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:4-24-trixie",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:4-24-bookworm",
 	"features": {
-		"ghcr.io/devcontainers/features/python:1": {}
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:3": {}
 	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
@@ -15,11 +17,18 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && sudo rm -rf /opt/nvim-linux-x86_64 && sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz && export PATH=\"$PATH:/opt/nvim-linux-x86_64/bin\"",
+	"postCreateCommand": {
+		"install act": "gh extension install https://github.com/nektos/gh-act"},
 
 	// Configure tool-specific properties.
 	"customizations": {
-		"vscode": {"extensions": ["vscodevim.vim", "chrisdias.vscode-opennewinstance"]}
+		"vscode": {"extensions": [
+				"vscodevim.vim",
+				"chrisdias.vscode-opennewinstance",
+				"SanjulaGanepola.github-local-actions",
+				"vscode-icons-team.vscode-icons",
+				"redhat.vscode-yaml"
+			]}
 	}
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
