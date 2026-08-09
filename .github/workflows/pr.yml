@@ -8,6 +8,8 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@main
+      - run: cat .github/workflows/pr.yml
       - run: |
           echo "event Pull request head: ${{github.event.pull_request.head}}"
           echo "event Pull request merge SHA: ${{github.event.pull_request.merge_commit_sha}}"
