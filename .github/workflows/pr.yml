@@ -6,7 +6,7 @@ on:
   
 jobs:
   job1:
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
     steps:
       - run: |
           echo "event Pull request head: ${{github.event.pull_request.head}}"
